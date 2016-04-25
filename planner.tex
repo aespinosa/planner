@@ -1,66 +1,18 @@
+\usemodule[pgf]
+\usemodule[pgfcalendar]
 
-\nopagenumbers
+\starttext
 
-\input tikz
-\input pgfcalendar
-\input pgffor
+\pgfcalendarweekdayname{4}
 
-\tikzpicture
-
-\pgfcalendar{cal}{2016-03-01}{2016-03-31}
-{
-  \ifdate{day of month=1}{
-    \draw (0,0) -- (4,0);
-    \draw [style=dashed, color=black!50] (1,0) -- (1,-22em);
-    \draw [style=dashed, color=black!50] (2,0) -- (2,-22em);
-    \draw [style=dashed, color=black!50] (3,0) -- (3,-22em);
-    \draw (0,-22em) -- (4,-22em);
-    \draw (0,-26em) -- (4,-26em);
-    \node [anchor=north west] at (0,0) {Plan};
-    \node [anchor=north west] at (1,0) {M};
-    \node [anchor=north west]  at (2,0) {T};
-    \node [anchor=north west] at (3,0) {W};
-    \pgftransformyshift{-2em}
-  }{}
-  \ifdate{Monday, day of month=1}{
-    \draw [color=black!50] (0,0) -- (4,0);
-  }{}
-  \ifdate{Monday, Tuesday, Wednesday}{
-    \node [fill=yellow, anchor=north west] at (1+\pgfcalendarcurrentweekday, 0) { \pgfcalendarcurrentday };
-  }{}
-  \ifdate{Sunday}{\pgftransformyshift{-4em}}{}
-}
-\endtikzpicture
-
-\vfill
-
-\tikzpicture
+\pgfcalendarmonthname{5}
 
 \pgfcalendar{cal}{2016-03-01}{2016-03-31}
 {
   \ifdate{day of month=1}{
-    \draw [color=black!50] (0,0) -- (4,0);
-    \draw [style=dashed, color=black!30] (1,0) -- (1,-22em);
-    \draw [style=dashed, color=black!30] (2,0) -- (2,-22em);
-    \draw [style=dashed, color=black!30] (3,0) -- (3,-22em);
-    \draw [color=black!50] (0,-22em) -- (4,-22em);
-    \draw [color=black!50] (0,-26em) -- (4,-26em);
-    \node [anchor=north west] at (0,0) {Th};
-    \node [anchor=north west] at (1,0) {F};
-    \node [anchor=north west]  at (2,0) {S};
-    \node [anchor=north west] at (3,0) {Su};
-    \pgftransformyshift{-2em}
-  }{}
-  \ifdate{Monday, day of month=1}{
-    \draw [color=black!30] (0,0) -- (4,0);
-  }{}
-  \ifdate{Monday, Tuesday, Wednesday}{
-  }{
-    \node [fill=yellow, anchor=north west] at (\pgfcalendarcurrentweekday-3, 0) { \pgfcalendarcurrentday };
+    \pgfcalendarmonthname{\pgfcalendarcurrentmonth}
   }
-  \ifdate{Sunday}{\pgftransformyshift{-4em}}{}
+  \pgfcalendarcurrentday
+
 }
-\endtikzpicture
-
-
-\bye
+\stoptext
