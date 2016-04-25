@@ -1,16 +1,17 @@
 \usemodule[pgf]
 \usemodule[pgfcalendar]
 
+% Hack to remove [translate] in localization of pgfcalendar* macros
+\def\translate{}
+
 \starttext
 
-\pgfcalendarweekdayname{4}
-
-\pgfcalendarmonthname{5}
-
-\pgfcalendar{cal}{2016-03-01}{2016-03-31}
+\pgfcalendar{cal}{2016-04-01}{2016-05-31}
 {
   \ifdate{day of month=1}{
     \pgfcalendarmonthname{\pgfcalendarcurrentmonth}
+
+    \pgfcalendarcurrentday
   }
   \pgfcalendarcurrentday
 
