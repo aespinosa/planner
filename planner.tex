@@ -1,19 +1,45 @@
 \usemodule[pgf]
 \usemodule[pgfcalendar]
 
+\setuppapersize[A6][A6]
+
 % Hack to remove [translate] in localization of pgfcalendar* macros
 \def\translate{}
 
+\def\stripzero#1{\expandafter\stripzerohelp#1}
+\def\stripzerohelp#1{\ifx 0#1\expandafter\stripzerohelp\else#1\fi}
+
 \starttext
 
-\pgfcalendar{cal}{2016-04-01}{2016-05-31}
+\pgfcalendar{cal}{2016-03-28}{2016-05-31}
 {
-  \ifdate{day of month=1}{
-    \pgfcalendarmonthname{\pgfcalendarcurrentmonth}
+  \ifdate{Monday}{
+    \stripzero{\pgfcalendarcurrentmonth} \ \pgfcalendarmonthname{\pgfcalendarcurrentmonth}
+    \hrule
 
-    \pgfcalendarcurrentday
-  }
-  \pgfcalendarcurrentday
+    notes and a month calendar
+    \vfill
 
+    \hrule
+
+  }{}
+  \ifdate{Thursday}{
+    \hfill \pgfcalendarcurrentyear 
+    \hrule
+
+  }{}
+
+  \ifdate{all}{
+    \stripzero{\pgfcalendarcurrentday}
+    \pgfcalendarweekdayshortname{\pgfcalendarcurrentweekday}
+    \vfill
+    \hrule
+
+  }{}
+
+  \ifdate{Wednesday,Sunday}{
+    \page[yes]
+
+  }{}
 }
 \stoptext
