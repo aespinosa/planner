@@ -58,7 +58,7 @@ Next half
   <% if date.monday? %>
     \setupheadertexts[
       <%= date.month %>
-      (<%= date.month %>)
+      <%= date.to_time.strftime('%b') %>
     ]
     \hrule
 
@@ -73,7 +73,7 @@ Next half
   <% end %>
 
     <%= date.day %>
-    (<%= date.wday %>)
+    <%= date.to_time.strftime('%a') %>
     \vfill
     \hrule
 
