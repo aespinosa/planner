@@ -11,7 +11,9 @@
 Planner 2016
 
 \page[yes]
-<% Date.new(2016, 3, 1).upto(Date.new(2016, 3, -1)) do |date| %>
+<% 3.upto(5) do |month| %>
+
+<% Date.new(2016, month, 1).upto(Date.new(2016, month, -1)) do |date| %>
   <% if date.day == 1 && !date.monday? %>
 \bTABLE
 
@@ -26,8 +28,8 @@ Planner 2016
 \bTABLEbody
 
   \bTR
-    <% date.wday.times do %>
-    \bTD \eTD
+    <% [(date.wday + 1) % 7, 2].min.times do %>
+    \bTD memo \eTD
       <% end %>
   \eTR
   <% end %>
@@ -40,6 +42,12 @@ Planner 2016
   <% if date.wednesday? %>
   \eTR
   <% end %>
+  <% if date.day == Date.new(date.year, date.month, -1).day && date.wday < 4 %>
+    <% (date.wday - 1).times do %>
+    \bTD x \eTD
+    <% end %>
+  \eTR
+  <% end %>
   <% if date.day == Date.new(date.year, date.month, -1).day %>
   \bTR \bTD[n=4] memo \eTD \eTR
   <% end %>
@@ -50,7 +58,7 @@ Planner 2016
 
 
 \page[yes]
-<% Date.new(2016, 3, 1).upto(Date.new(2016, 3, -1)) do |date| %>
+<% Date.new(2016, month, 1).upto(Date.new(2016, month, -1)) do |date| %>
   <% if date.day == 1 && !date.monday? %>
 \bTABLE
 
@@ -65,8 +73,8 @@ Planner 2016
 \bTABLEbody
 
   \bTR
-    <% (date.wday - 3).times  do %>
-    \bTD \eTD
+    <% ((date.wday + 6) % 7 - 3).times  do %>
+    \bTD x \eTD
       <% end %>
   \eTR
   <% end %>
@@ -77,8 +85,8 @@ Planner 2016
     \bTD <%= date.day %>\eTD
   <% end %>
   <% if date.day == Date.new(date.year, date.month, -1).day && !date.sunday? %>
-    <% (7 - date.wday).times do %>
-    \bTD \eTD
+    <% [(7 - date.wday), 4].min.times do %>
+    \bTD x \eTD
     <% end %>
   \eTR
   <% end %>
@@ -93,8 +101,9 @@ Planner 2016
 \eTABLEbody
 \eTABLE
 
-
 \page[yes]
+
+<% end %>
 
 <% Date.new(2016, 2, -1).upto(Date.new(2016, 3, -1)) do |date| %>
   <% if date.monday? %>
