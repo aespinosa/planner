@@ -1,0 +1,85 @@
+\setuppapersize[A6][A6]
+\setuppagenumbering[state=stop]
+
+\def\translate{}
+
+\def\stripzero#1{\expandafter\stripzerohelp#1}
+\def\stripzerohelp#1{\ifx 0#1\expandafter\stripzerohelp\else#1\fi}
+
+\starttext
+
+Planner 2016
+
+\page[yes]
+<% Date.new(2016, 3, 1).upto(Date.new(2016, 3, -1)) do |date| %>
+  <% if date.day == 1 && !date.monday? %>
+\bTABLE
+
+\bTABLEhead
+\bTR
+  \bTH Weekly Plan \eTH
+  \bTH Monday \eTH
+  \bTH Tuesday \eTH
+  \bTH Wednesday \eTH
+\eTR
+\eTABLEhead
+\bTABLEbody
+
+  \bTR
+    <% date.wday.times do %>
+    \bTD \eTD
+      <% end %>
+  \eTR
+  <% end %>
+  <% if date.monday? %>
+  \bTR \bTD \eTD
+  <% end %>
+  <% if date.monday? || date.tuesday? || date.wednesday? %>
+  \bTD <%= date.day %>\eTD
+  <% end %>
+  <% if date.wednesday? %>
+  \eTR
+  <% end %>
+  <% if date.day == Date.new(date.year, date.month, -1) %>
+    last day
+    \bTR \bTD[n=4] memo \eTD \eTR
+  <% end %>
+<% end %>
+
+\eTABLEbody
+\eTABLE
+
+
+\page[yes]
+Next half
+\page[yes]
+
+<% Date.new(2016, 3, 1).upto(Date.new(2016, 3, -1)) do |date| %>
+  <% if date.monday? %>
+    \setupheadertexts[
+      <%= date.month %>
+      (<%= date.month %>)
+    ]
+    \hrule
+
+    notes and a month calendar
+    \vfill
+
+    \hrule
+  <% end %>
+  <% if date.thursday? %>
+    \setupheadertexts[<%= date.year %>]
+    \hrule
+  <% end %>
+
+    <%= date.day %>
+    (<%= date.wday %>)
+    \vfill
+    \hrule
+
+  <% if date.sunday? || date.wednesday? %>
+    \page[yes]
+  <% end %>
+<% end %>
+
+\stoptext
