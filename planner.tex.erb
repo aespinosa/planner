@@ -33,7 +33,7 @@ Planner 2016
 \bTABLEbody
 
   \bTR
-    <% [(date.wday + 1) % 7, 2].min.times do %>
+    <% ([(date.wday) % 7, 3].min).times do %>
     \bTD memo \eTD
       <% end %>
   \eTR
