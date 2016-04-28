@@ -105,9 +105,9 @@ Planner 2016
   <% if date.thursday? || date.friday? || date.saturday? || date.sunday? %>
     \bTD <%= date.day %>\eTD
   <% end %>
-  <% if date.day == Date.new(date.year, date.month, -1).day && !date.sunday? %>
+  <% if date.day == Date.new(date.year, date.month, -1).day && !date.sunday? && date.wday > 3 %>
     <% [(7 - date.wday), 4].min.times do %>
-    \bTD x \eTD
+    \bTD \eTD
     <% end %>
   \eTR
   <% end %>
