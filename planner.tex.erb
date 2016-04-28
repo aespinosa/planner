@@ -53,8 +53,8 @@ Planner 2016
     <% end %>
   \eTR
   <% end %>
-  <% if date.day == Date.new(date.year, date.month, -1).day %>
-  \bTR \bTD[n=4] memo \eTD \eTR
+  <% if date.day == Date.new(date.year, date.month, -1).day && date.cweek - Date.new(date.year, date.month, 1).cweek < 5 %>
+  \bTR \bTD[nc=4] memo \eTD \eTR
   <% end %>
 <% end %>
 
@@ -99,8 +99,8 @@ Planner 2016
   <% if date.sunday? %>
   \eTR
   <% end %>
-  <% if date.day == Date.new(date.year, date.month, -1).day %>
-  \bTR \bTD[n=4] memo \eTD \eTR
+  <% if date.day == Date.new(date.year, date.month, -1).day && date.cweek - Date.new(date.year, date.month, 1).cweek < 5 %>
+  \bTR \bTD[nc=4] memo \eTD \eTR
   <% end %>
 <% end %>
 
