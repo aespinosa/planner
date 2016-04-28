@@ -2,6 +2,7 @@
 \setuppagenumbering[state=stop]
 
 \setuplayout[
+  location=middle,
   height=\dimexpr\paperheight - 24pt\relax,
   width=\dimexpr\paperwidth - 24pt\relax,
   footer=0pt, footerdistance=0pt,
@@ -17,23 +18,20 @@
 
 \starttext
 
-Planner 2016
-
-\page[yes]
 \setuplayout[
   topspace=6pt,
   header=6pt,
   headerdistance=12pt
 ]
 \switchtobodyfont[6pt]
-<% 3.upto(5) do |month| %>
+<% 4.upto(7) do |month| %>
 
 \setupTABLE[c][each][width=0.25\textwidth]
 \setupTABLE[row][2,3,4,5,6,7,8][height=\dimexpr \textheight / 6\relax]
 <% Date.new(2016, month, 1).upto(Date.new(2016, month, -1)) do |date| %>
 \setupheadertexts
-    [][<%= date.year %>]
-    [][<%= date.month %> <%= date.to_time.strftime('%b') %>]
+    [<%= date.month %> <%= date.to_time.strftime('%b') %>][]
+    [<%= date.year %>][]
   <% if date.day == 1 && !date.monday? %>
 \bTABLE
 
@@ -131,7 +129,10 @@ Planner 2016
   headerdistance=3pt,
   header=3pt
 ]
-<% Date.new(2016, 2, -1).upto(Date.new(2016, 3, -1)) do |date| %>
+<% Date.new(2016, 4, -6).upto(Date.new(2016, 7, -1)) do |date| %>
+\setupheadertexts
+    [<%= date.month %> <%= date.to_time.strftime('%b') %>][]
+    [<%= date.year %>][]
   <% if date.monday? %>
     \hrule
     \blank[2*line]
