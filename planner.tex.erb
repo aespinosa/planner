@@ -6,13 +6,18 @@
 \def\stripzero#1{\expandafter\stripzerohelp#1}
 \def\stripzerohelp#1{\ifx 0#1\expandafter\stripzerohelp\else#1\fi}
 
+\setupcolors[state=start]
+
 \starttext
 
 Planner 2016
 
 \page[yes]
+\switchtobodyfont[6pt]
 <% 3.upto(5) do |month| %>
 
+\setupTABLE[c][each][width=0.25\textwidth]
+\setupTABLE[row][2,3,4,5,6,7,8][height=\dimexpr \textheight / 6\relax]
 <% Date.new(2016, month, 1).upto(Date.new(2016, month, -1)) do |date| %>
   <% if date.day == 1 && !date.monday? %>
 \bTABLE
@@ -61,6 +66,7 @@ Planner 2016
 <% Date.new(2016, month, 1).upto(Date.new(2016, month, -1)) do |date| %>
   <% if date.day == 1 && !date.monday? %>
 \bTABLE
+\setupTABLE[col][each][width=\dimexpr \textwidth / 4\relax]
 
 \bTABLEhead
 \bTR
