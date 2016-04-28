@@ -50,7 +50,50 @@ Planner 2016
 
 
 \page[yes]
-Next half
+<% Date.new(2016, 3, 1).upto(Date.new(2016, 3, -1)) do |date| %>
+  <% if date.day == 1 && !date.monday? %>
+\bTABLE
+
+\bTABLEhead
+\bTR
+  \bTH Thursday \eTH
+  \bTH Friday \eTH
+  \bTH Saturday \eTH
+  \bTH Sunday \eTH
+\eTR
+\eTABLEhead
+\bTABLEbody
+
+  \bTR
+    <% (date.wday - 3).times  do %>
+    \bTD \eTD
+      <% end %>
+  \eTR
+  <% end %>
+  <% if date.monday? %>
+  \bTR 
+  <% end %>
+  <% if date.thursday? || date.friday? || date.saturday? || date.sunday? %>
+    \bTD <%= date.day %>\eTD
+  <% end %>
+  <% if date.day == Date.new(date.year, date.month, -1).day && !date.sunday? %>
+    <% (7 - date.wday).times do %>
+    \bTD \eTD
+    <% end %>
+  \eTR
+  <% end %>
+  <% if date.sunday? %>
+  \eTR
+  <% end %>
+  <% if date.day == Date.new(date.year, date.month, -1).day %>
+  \bTR \bTD[n=4] memo \eTD \eTR
+  <% end %>
+<% end %>
+
+\eTABLEbody
+\eTABLE
+
+
 \page[yes]
 
 <% Date.new(2016, 2, -1).upto(Date.new(2016, 3, -1)) do |date| %>
