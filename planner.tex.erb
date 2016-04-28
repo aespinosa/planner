@@ -34,7 +34,7 @@ Planner 2016
 
   \bTR
     <% ([(date.wday) % 7, 3].min).times do %>
-    \bTD memo \eTD
+    \bTD \eTD
       <% end %>
   \eTR
   <% end %>
@@ -49,12 +49,12 @@ Planner 2016
   <% end %>
   <% if date.day == Date.new(date.year, date.month, -1).day && date.wday < 4 %>
     <% (date.wday - 1).times do %>
-    \bTD x \eTD
+    \bTD \eTD
     <% end %>
   \eTR
   <% end %>
   <% if date.day == Date.new(date.year, date.month, -1).day && date.cweek - Date.new(date.year, date.month, 1).cweek < 5 %>
-  \bTR \bTD[nc=4] memo \eTD \eTR
+  \bTR \bTD[nc=4] \eTD \eTR
   <% end %>
 <% end %>
 
@@ -80,7 +80,7 @@ Planner 2016
 
   \bTR
     <% ((date.wday + 6) % 7 - 3).times  do %>
-    \bTD x \eTD
+    \bTD \eTD
       <% end %>
   \eTR
   <% end %>
@@ -100,7 +100,7 @@ Planner 2016
   \eTR
   <% end %>
   <% if date.day == Date.new(date.year, date.month, -1).day && date.cweek - Date.new(date.year, date.month, 1).cweek < 5 %>
-  \bTR \bTD[nc=4] memo \eTD \eTR
+  \bTR \bTD[nc=4] \eTD \eTR
   <% end %>
 <% end %>
 
@@ -119,7 +119,6 @@ Planner 2016
     ]
     \hrule
 
-    notes and a month calendar
     \vfill
 
     \hrule
