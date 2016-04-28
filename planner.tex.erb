@@ -19,6 +19,9 @@ Planner 2016
 \setupTABLE[c][each][width=0.25\textwidth]
 \setupTABLE[row][2,3,4,5,6,7,8][height=\dimexpr \textheight / 6\relax]
 <% Date.new(2016, month, 1).upto(Date.new(2016, month, -1)) do |date| %>
+\setupheadertexts
+    [][<%= date.year %>]
+    [][<%= date.month %> <%= date.to_time.strftime('%b') %>]
   <% if date.day == 1 && !date.monday? %>
 \bTABLE
 
@@ -113,10 +116,6 @@ Planner 2016
 
 <% Date.new(2016, 2, -1).upto(Date.new(2016, 3, -1)) do |date| %>
   <% if date.monday? %>
-    \setupheadertexts[
-      <%= date.month %>
-      <%= date.to_time.strftime('%b') %>
-    ]
     \hrule
 
     \vfill
@@ -124,7 +123,6 @@ Planner 2016
     \hrule
   <% end %>
   <% if date.thursday? %>
-    \setupheadertexts[<%= date.year %>]
     \hrule
   <% end %>
 
