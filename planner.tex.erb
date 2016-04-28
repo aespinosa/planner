@@ -40,9 +40,8 @@ Planner 2016
   <% if date.wednesday? %>
   \eTR
   <% end %>
-  <% if date.day == Date.new(date.year, date.month, -1) %>
-    last day
-    \bTR \bTD[n=4] memo \eTD \eTR
+  <% if date.day == Date.new(date.year, date.month, -1).day %>
+  \bTR \bTD[n=4] memo \eTD \eTR
   <% end %>
 <% end %>
 
@@ -54,7 +53,7 @@ Planner 2016
 Next half
 \page[yes]
 
-<% Date.new(2016, 3, 1).upto(Date.new(2016, 3, -1)) do |date| %>
+<% Date.new(2016, 2, -1).upto(Date.new(2016, 3, -1)) do |date| %>
   <% if date.monday? %>
     \setupheadertexts[
       <%= date.month %>
